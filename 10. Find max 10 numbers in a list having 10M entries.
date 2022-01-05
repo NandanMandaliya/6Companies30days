@@ -1,0 +1,44 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long
+#define endl "\n"
+#define MOD 1000000007
+#define clr(val) memset(val, 0, sizeof(val))
+#define OJ                            \
+    freopen("input.txt", "r", stdin); \
+    freopen("output.txt", "w", stdout);
+#define FastIO                        \
+    ios_base::sync_with_stdio(false); \
+    cin.tie(NULL);                    \
+    cout.tie(NULL);
+
+signed main()
+{
+    OJ;
+    FastIO;
+    int n = 1e7; // 10 Million 
+    //cin >> n;
+    // Now one approach is to sort the numbers and output first 10 numbers
+    // so as we are sorting the array of size 1e7(10M) it would take nlogn time
+    // But as we need only 10 max element we can reduce our work form nlogn to nlogk (here k = 10)
+    // using min-heap
+    int k = 10;
+    //cin >> k;
+    priority_queue<int,vector<int>,greater<int>>minh;
+
+    for(int i = 0; i < n; i++){
+        int num;
+        cin >> num;
+        minh.push(num);
+        if(minh.size() > k){
+            minh.pop();
+        }
+    }
+    while(!minh.empty()){
+        cout << minh.top() << " ";
+        minh.pop();
+    }
+    cout << endl;
+    return 0;
+}
+
